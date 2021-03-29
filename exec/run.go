@@ -34,9 +34,7 @@ func Run(cfg *config.Config) {
 		cfg.Exit()
 	}
 
-	run := selectedNode(cfg)
-
-	if !run {
+	if !selectedNode(cfg) {
 		os.Exit(0)
 	}
 
