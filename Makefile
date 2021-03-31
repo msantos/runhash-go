@@ -3,6 +3,7 @@
 VERSION := 0.9.5
 
 all:
+	cd cmd/runhash && \
 	CGO_ENABLED=0 go build -trimpath -ldflags "-X runhash/config.Version=$(VERSION) -s -w"
 
 fmt: format

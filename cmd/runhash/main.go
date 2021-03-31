@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"runhash/cmd/runhash/exec"
+	"runhash/cmd/runhash/sort"
+	"runhash/cmd/runhash/xargs"
 	"runhash/config"
-	"runhash/exec"
-	"runhash/sort"
-	"runhash/xargs"
 	"strings"
 )
 
