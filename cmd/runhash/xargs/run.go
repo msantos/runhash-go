@@ -34,11 +34,11 @@ func Run(cfg *config.Config) {
 	cfg.Help = help
 
 	if cfg.Key == "" {
-		cfg.Exit()
+		cfg.Usage()
 	}
 
 	if len(cfg.Nodes) == 0 {
-		cfg.Exit()
+		cfg.Usage()
 	}
 
 	nodes := cfg.Nodes
@@ -52,7 +52,7 @@ func Run(cfg *config.Config) {
 	var oarg []string
 	switch len(cfg.Args) {
 	case 0:
-		cfg.Exit()
+		cfg.Usage()
 	case 1:
 		cmd = cfg.Args[0]
 	default:

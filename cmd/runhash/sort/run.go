@@ -36,7 +36,7 @@ func Run(cfg *config.Config) {
 	nodes := cfg.Nodes
 
 	if cfg.Key == "" {
-		cfg.Exit()
+		cfg.Usage()
 	}
 
 	if len(cfg.Args) > 0 {
@@ -44,7 +44,7 @@ func Run(cfg *config.Config) {
 	}
 
 	if len(nodes) == 0 {
-		cfg.Exit()
+		cfg.Usage()
 	}
 
 	if nodes[0] == "-" {

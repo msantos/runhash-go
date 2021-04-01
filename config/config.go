@@ -43,7 +43,7 @@ func Env() (*Config, error) {
 	}, nil
 }
 
-func (cfg *Config) Exit() {
+func (cfg *Config) Usage() {
 	if cfg.Help != "" {
 		fmt.Fprintf(os.Stderr, "Usage: %s %s\n", os.Args[0], cfg.Help)
 	}

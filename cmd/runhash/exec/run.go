@@ -27,11 +27,11 @@ func Run(cfg *config.Config) {
 	cfg.Help = help
 
 	if cfg.Key == "" {
-		cfg.Exit()
+		cfg.Usage()
 	}
 
 	if len(cfg.Args) == 0 {
-		cfg.Exit()
+		cfg.Usage()
 	}
 
 	if !selectedNode(cfg) {
