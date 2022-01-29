@@ -105,6 +105,8 @@ func execv(command string, args []string, env []string) int {
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan)
 
+	var exitError *exec.ExitError
+
 	for {
 		select {
 		case sig := <-sigChan:
@@ -114,18 +116,22 @@ func execv(command string, args []string, env []string) int {
 				return 0
 			}
 
-			var exitError *exec.ExitError
-			if errors.As(err, &exitError) {
-				if waitStatus, ok := exitError.Sys().(syscall.WaitStatus); ok {
-					if waitStatus.Signaled() {
-						return 128 + int(waitStatus.Signal())
-					}
-					return waitStatus.ExitStatus()
-				}
+			if !errors.As(err, &exitError) {
+				fmt.Fprintln(os.Stderr, err)
+				return 111
 			}
 
-			fmt.Fprintln(os.Stderr, err)
-			return 111
+			waitStatus, ok := exitError.Sys().(syscall.WaitStatus)
+			if !ok {
+				fmt.Fprintln(os.Stderr, err)
+				return 111
+			}
+
+			if waitStatus.Signaled() {
+				return 128 + int(waitStatus.Signal())
+			}
+
+			return waitStatus.ExitStatus()
 		}
 	}
 }
