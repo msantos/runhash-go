@@ -21,8 +21,6 @@ Usage: %s [-n <number>] <command> [<key> [<...>]]
       sort - sort nodes 
       exec - run command on matching node
       xargs - failover command between nodes
-
-      help - dislay help for command
       version - display version
 
 Environment Variables:
