@@ -57,7 +57,7 @@ func args() *config.Config {
 
 	if flag.NArg() == 0 {
 		flag.Usage()
-		os.Exit(1)
+		os.Exit(2)
 	}
 
 	args := flag.Args()

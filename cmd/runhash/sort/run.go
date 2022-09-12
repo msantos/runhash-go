@@ -52,7 +52,7 @@ func Run(cfg *config.Config) {
 		nodes, err = readFromStdin()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "stdin: %s\n", err)
-			os.Exit(111)
+			os.Exit(1)
 		}
 		if len(nodes) == 0 {
 			os.Exit(0)

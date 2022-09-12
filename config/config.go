@@ -47,7 +47,7 @@ func (cfg *Config) Usage() {
 	if cfg.Help != "" {
 		fmt.Fprintf(os.Stderr, "Usage: %s %s\n", os.Args[0], cfg.Help)
 	}
-	os.Exit(1)
+	os.Exit(2)
 }
 
 func (cfg *Config) String() string {

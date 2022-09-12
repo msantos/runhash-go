@@ -50,7 +50,7 @@ func Run(cfg *config.Config) {
 	if err := syscall.Exec(exe, arg, syscall.Environ()); err != nil {
 		fmt.Fprintf(os.Stderr, "%s:%s\n", exe, err)
 	}
-	os.Exit(127)
+	os.Exit(126)
 }
 
 func selectedNode(cfg *config.Config) bool {

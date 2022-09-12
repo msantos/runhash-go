@@ -95,21 +95,20 @@ func execv(command string, args []string, env []string) int {
 
 	if err := cmd.Start(); err != nil {
 		fmt.Fprintln(os.Stderr, err)
-		return 111
+		return 126
 	}
 	waitCh := make(chan error, 1)
 	go func() {
 		waitCh <- cmd.Wait()
-		close(waitCh)
 	}()
-	sigChan := make(chan os.Signal, 1)
-	signal.Notify(sigChan)
+	sigCh := make(chan os.Signal, 1)
+	signal.Notify(sigCh)
 
 	var exitError *exec.ExitError
 
 	for {
 		select {
-		case sig := <-sigChan:
+		case sig := <-sigCh:
 			_ = cmd.Process.Signal(sig)
 		case err := <-waitCh:
 			if err == nil {
@@ -118,13 +117,13 @@ func execv(command string, args []string, env []string) int {
 
 			if !errors.As(err, &exitError) {
 				fmt.Fprintln(os.Stderr, err)
-				return 111
+				return 128
 			}
 
 			waitStatus, ok := exitError.Sys().(syscall.WaitStatus)
 			if !ok {
 				fmt.Fprintln(os.Stderr, err)
-				return 111
+				return 128
 			}
 
 			if waitStatus.Signaled() {
