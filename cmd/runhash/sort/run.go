@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	help = `sort [-n <number>] <key> [<node> <...>]
+	help = `sort <key> [<node> <...>]
 
 Description:
 
