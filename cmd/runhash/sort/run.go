@@ -4,9 +4,10 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"runhash/config"
-	"runhash/hash"
 	"strings"
+
+	"codeberg.org/msantos/runhash-go/config"
+	"codeberg.org/msantos/runhash-go/hash"
 )
 
 const (

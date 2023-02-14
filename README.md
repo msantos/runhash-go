@@ -68,6 +68,9 @@ the command is run again with the next node in the list.
 
 # Build
 
+    go install codeberg.org/msantos/runhash-go/cmd/runhash
+
+    # build from git repository
     go build
 
     # to include the version number

@@ -5,11 +5,12 @@ import (
 	"fmt"
 	"os"
 	"path"
-	"runhash/cmd/runhash/exec"
-	"runhash/cmd/runhash/sort"
-	"runhash/cmd/runhash/xargs"
-	"runhash/config"
 	"strings"
+
+	"codeberg.org/msantos/runhash-go/cmd/runhash/exec"
+	"codeberg.org/msantos/runhash-go/cmd/runhash/sort"
+	"codeberg.org/msantos/runhash-go/cmd/runhash/xargs"
+	"codeberg.org/msantos/runhash-go/config"
 )
 
 func usage(cfg *config.Config) {

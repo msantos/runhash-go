@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"runhash/config"
-	"runhash/hash"
 	"syscall"
+
+	"codeberg.org/msantos/runhash-go/config"
+	"codeberg.org/msantos/runhash-go/hash"
 )
 
 const (

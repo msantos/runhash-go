@@ -6,10 +6,11 @@ import (
 	"os"
 	"os/exec"
 	"os/signal"
-	"runhash/config"
-	"runhash/hash"
 	"strings"
 	"syscall"
+
+	"codeberg.org/msantos/runhash-go/config"
+	"codeberg.org/msantos/runhash-go/hash"
 )
 
 const (
