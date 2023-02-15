@@ -63,8 +63,10 @@ func selectedNode(cfg *config.Config) bool {
 	if !cfg.Sorted {
 		values = hash.Sort(cfg.Key, cfg.Nodes)
 	}
-	if values[0] == cfg.Node {
-		return true
+	for _, v := range cfg.Subset(values) {
+		if v == cfg.Node {
+			return true
+		}
 	}
 	return false
 }
