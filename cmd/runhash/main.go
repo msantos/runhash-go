@@ -104,5 +104,6 @@ func main() {
 	default:
 		fmt.Fprintf(os.Stderr, "unknown command: %s\n", cfg.Command)
 		flag.Usage()
+		os.Exit(127)
 	}
 }
