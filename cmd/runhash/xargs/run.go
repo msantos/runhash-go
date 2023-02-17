@@ -47,8 +47,6 @@ func Run(cfg *config.Config) {
 		nodes = hash.Sort(cfg.Key, cfg.Nodes)
 	}
 
-	nodes = cfg.Subset(nodes)
-
 	var cmd string
 	var oarg []string
 	switch len(cfg.Args) {
@@ -69,7 +67,7 @@ func Run(cfg *config.Config) {
 
 	exitStatus := 0
 
-	for _, node := range nodes {
+	for _, node := range cfg.Subset(nodes) {
 		arg := replace(oarg, node, cfg.Replace)
 		exitStatus = execv(exe, arg, syscall.Environ())
 		if cfg.OKExit && exitStatus == 0 {

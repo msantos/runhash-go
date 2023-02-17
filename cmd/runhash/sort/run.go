@@ -64,8 +64,7 @@ func Run(cfg *config.Config) {
 		nodes = hash.Sort(cfg.Key, nodes)
 	}
 
-	nodes = cfg.Subset(nodes)
-	for _, node := range nodes {
+	for _, node := range cfg.Subset(nodes) {
 		fmt.Println(node)
 	}
 }
