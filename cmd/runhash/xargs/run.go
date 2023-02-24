@@ -100,8 +100,16 @@ func execv(command string, args []string, env []string) int {
 	go func() {
 		waitCh <- cmd.Wait()
 	}()
+
 	sigCh := make(chan os.Signal, 1)
-	signal.Notify(sigCh)
+	signal.Notify(sigCh,
+		syscall.SIGHUP,
+		syscall.SIGINT,
+		syscall.SIGQUIT,
+		syscall.SIGTERM,
+		syscall.SIGUSR1,
+		syscall.SIGUSR2,
+	)
 
 	var exitError *exec.ExitError
 
