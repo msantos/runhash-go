@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"codeberg.org/msantos/runhash-go/config"
-	"codeberg.org/msantos/runhash-go/hash"
+	"codeberg.org/msantos/runhash-go/internal/config"
+	"codeberg.org/msantos/runhash-go/internal/hash"
 )
 
 const (
