@@ -48,16 +48,16 @@ func Run(cfg *config.Config) {
 		cfg.Usage()
 	}
 
-	var err error
 	if nodes[0] == "-" {
-		nodes, err = readFromStdin()
+		n, err := readFromStdin()
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "stdin: %s\n", err)
 			os.Exit(1)
 		}
-		if len(nodes) == 0 {
+		if len(n) == 0 {
 			os.Exit(0)
 		}
+		nodes = n
 	}
 
 	if !cfg.Sorted {
@@ -69,7 +69,8 @@ func Run(cfg *config.Config) {
 	}
 }
 
-func readFromStdin() (nodes []string, err error) {
+func readFromStdin() ([]string, error) {
+	nodes := make([]string, 0)
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		node := strings.TrimSpace(scanner.Text())
