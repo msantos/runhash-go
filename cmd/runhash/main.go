@@ -13,7 +13,7 @@ import (
 	"codeberg.org/msantos/runhash-go/internal/config"
 )
 
-func usage(cfg *config.Config) {
+func usage() {
 	fmt.Fprintf(os.Stderr, `%s %s
 Usage: %s [-n <number>] <command> [<key> [<...>]]
 
@@ -28,31 +28,25 @@ Environment Variables:
 
 `, path.Base(os.Args[0]), config.Version, os.Args[0])
 
-	cfg.PrintDefaults()
+	config.PrintDefaults()
 	fmt.Fprintf(os.Stderr, "Options:\n\n")
 	flag.PrintDefaults()
 }
 
 func args() *config.Config {
-	cfg, err := config.Env()
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
-	}
-
-	flag.Usage = func() {
-		usage(cfg)
-	}
-
 	n := flag.Int("n", 0, "number of nodes to return, use 0 for all nodes")
-	node := flag.String("node", "", "set identifier for this node")
-	nodes := flag.String("nodes", "", "set node list")
+	node := flag.String("node", config.Nodename(), "set identifier for this node")
+	nodes := flag.String("nodes", config.Nodes(), "set node list")
 	replace := flag.String("replace", "{}",
 		"xargs: replace occurrences of string with selected node")
 	okExit := flag.Bool("okexit", true,
 		"xargs: exit if command returns status 0")
 	sorted := flag.Bool("sorted", false,
 		"Do not sort: use the existing sort order for nodes")
+
+	flag.Usage = func() {
+		usage()
+	}
 
 	flag.Parse()
 
@@ -63,20 +57,15 @@ func args() *config.Config {
 
 	args := flag.Args()
 
-	cfg.N = *n
-	cfg.Replace = *replace
-	cfg.OKExit = *okExit
-	cfg.Sorted = *sorted
-
-	if *node != "" {
-		cfg.Node = *node
+	cfg := &config.Config{
+		N:       *n,
+		Replace: *replace,
+		OKExit:  *okExit,
+		Sorted:  *sorted,
+		Node:    *node,
+		Nodes:   strings.Fields(*nodes),
+		Command: args[0],
 	}
-
-	if *nodes != "" {
-		cfg.Nodes = strings.Fields(*nodes)
-	}
-
-	cfg.Command = args[0]
 
 	if len(args) > 1 {
 		cfg.Key = args[1]

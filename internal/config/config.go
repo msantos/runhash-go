@@ -28,19 +28,16 @@ func getenv(k, def string) string {
 	return def
 }
 
-func Env() (*Config, error) {
-	nodes := getenv("RUNHASH_NODES", "")
-
+func Nodename() string {
 	hostname, err := os.Hostname()
 	if err != nil {
-		return nil, fmt.Errorf("gethostname: %w", err)
+		hostname = "unknown"
 	}
-	node := getenv("RUNHASH_NODE", hostname)
+	return getenv("RUNHASH_NODE", hostname)
+}
 
-	return &Config{
-		Node:  node,
-		Nodes: strings.Fields(nodes),
-	}, nil
+func Nodes() string {
+	return getenv("RUNHASH_NODES", "")
 }
 
 func (cfg *Config) Usage() {
@@ -58,24 +55,11 @@ func (cfg *Config) String() string {
 	)
 }
 
-func (cfg *Config) PrintDefaults() {
-	hostname, err := os.Hostname()
-	if err != nil {
-		hostname = "unknown"
-	}
-
-	fmt.Fprintf(os.Stderr,
-		"  RUNHASH_NODE=\"%s\"\n    %s (default %s)\n\n",
-		cfg.Node,
-		"Node identifier",
-		hostname,
-	)
-
-	fmt.Fprintf(os.Stderr,
-		"  RUNHASH_NODES=\"%s\"\n    %s (default %s)\n\n",
-		strings.Join(cfg.Nodes, " "),
-		"Space separated list of nodes",
-		"\"\"",
+func PrintDefaults() {
+	fmt.Fprintf(
+		os.Stderr,
+		"  RUNHASH_NODE=\"%s\"\n    Node identifier\n\n  RUNHASH_NODES=\"%s\"\n    Space separated list of nodes\n\n",
+		Nodename(), Nodes(),
 	)
 }
 
