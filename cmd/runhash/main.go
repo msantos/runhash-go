@@ -17,12 +17,12 @@ func usage() {
 	fmt.Fprintf(os.Stderr, `%s %s
 Usage: %s [-n <number>] <command> [<key> [<...>]]
 
-    Commands:
+Commands:
 
-      sort - sort nodes 
-      exec - run command on matching node
-      xargs - failover command between nodes
-      version - display version
+  sort - sort nodes
+  exec - run command on matching node
+  xargs - failover command between nodes
+  version - display version
 
 Environment Variables:
 

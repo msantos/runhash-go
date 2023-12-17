@@ -43,12 +43,16 @@ Select one or more nodes from a list of nodes. Nodes are read:
 
 ### exec
 
-Execute a command on one node chosen from the list of nodes based on the
-key. If RUNHASH_NODES is empty, the command will always run on this node.
+Execute a command on a subset of nodes chosen from the list of nodes
+based on the key. The number of nodes chosen is set by the `-n` option.
+
+The command will always run on this node if either:
+* RUNHASH_NODES is empty
+* the node is included in `RUNHASH_NODES` and `-n` is 0 (all nodes)
 
 #### Example
 
-    RUNHASH_NODES="$(uname -n) foo bar" runhash exec mykey ls -al
+    RUNHASH_NODES="$(uname -n) foo bar" runhash -n 1 exec mykey ls -al
 
 ### xargs
 
