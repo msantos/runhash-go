@@ -35,11 +35,13 @@ Select one or more nodes from a list of nodes. Nodes are read:
 
 #### Example
 
-      runhash sort mykey 127.0.0.1 192.168.1.1 10.0.0.1
+```
+runhash sort mykey 127.0.0.1 192.168.1.1 10.0.0.1
 
-      RUNHASH_NODES="127.0.0.1 192.168.1.1 10.0.0.1" runhash sort mykey
+RUNHASH_NODES="127.0.0.1 192.168.1.1 10.0.0.1" runhash sort mykey
 
-      echo -e "127.0.0.1\n192.168.1.1\n10.0.0.1" | runhash sort mykey -
+echo -e "127.0.0.1\n192.168.1.1\n10.0.0.1" | runhash sort mykey -
+```
 
 ### exec
 
@@ -52,7 +54,9 @@ The command will always run on this node if either:
 
 #### Example
 
-    RUNHASH_NODES="$(uname -n) foo bar" runhash -n 1 exec mykey ls -al
+```
+RUNHASH_NODES="$(uname -n) foo bar" runhash -n 1 exec mykey ls -al
+```
 
 ### xargs
 
@@ -64,21 +68,25 @@ the command is run again with the next node in the list.
 
 #### Example
 
-    RUNHASH_NODES="127.0.0.1 127.1.1.1" runhash xargs mykey nc "{}" 443
+```
+RUNHASH_NODES="127.0.0.1 127.1.1.1" runhash xargs mykey nc "{}" 443
 
-    # set an environment variable for a command
-    RUNHASH_NODES="127.0.0.1 127.1.1.1" runhash xargs mykey \
-      env TEST_VARIABLE="{}" env
+# set an environment variable for a command
+RUNHASH_NODES="127.0.0.1 127.1.1.1" runhash xargs mykey \
+  env TEST_VARIABLE="{}" env
+```
 
 # Build
 
-    go install codeberg.org/msantos/runhash-go/cmd/runhash
+```
+go install codeberg.org/msantos/runhash-go/cmd/runhash
 
-    # build from git repository
-    go build
+# build from git repository
+go build
 
-    # to include the version number
-    make
+# to include the version number
+make
+```
 
 # OPTIONS
 
@@ -93,16 +101,16 @@ nodes *string*
 
 sorted *true|false*
 : use the existing sort order for nodes, provided in the environment or
-  command line (default false)
+command line (default false)
 
 ## xargs
 
 okexit *true|false*
 : The "--okexit" option is the opposite of bash's "set -o errexit": `xargs`
-  terminates if the command exits with status 0.
+terminates if the command exits with status 0.
 
-  If "--okexit=false", xargs will run the command on all nodes in
-  the list.
+If "--okexit=false", xargs will run the command on all nodes in
+the list.
 
 replace *string*
 : template string (default "{}")
@@ -111,7 +119,7 @@ replace *string*
 
 RUNHASH_NODE="*hostname*"
 : Tag used to identify this node in the node list. Usually this will be
-  set to the hostname or an IP address. Defaults to `uname -n`.
+set to the hostname or an IP address. Defaults to `uname -n`.
 
 RUNHASH_NODES=""
 : Pool of nodes to choose from.
