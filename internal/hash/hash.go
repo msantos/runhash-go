@@ -8,6 +8,8 @@ import (
 	"github.com/nspcc-dev/hrw"
 )
 
+var re = regexp.MustCompile("^[0-9]+:")
+
 func Sort(key string, nodes []string) []string {
 	if len(nodes) < 2 {
 		return nodes
@@ -28,10 +30,8 @@ func toWeightValues(nodes []string) ([]float64, []string) {
 	weights := make([]float64, len(nodes))
 	values := make([]string, len(nodes))
 
-	re := regexp.MustCompile("^[0-9]+:")
-
 	for n, v := range nodes {
-		if ok := re.MatchString(v); !ok {
+		if !re.MatchString(v) {
 			weights[n] = 1.0
 			values[n] = v
 
