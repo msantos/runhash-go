@@ -58,14 +58,11 @@ func toWeightValues(nodes []string) ([]float64, []string) {
 }
 
 func maxWeight(array []float64) float64 {
-	max := array[0]
-	for _, value := range array[1:] {
+	max := 1
+	for _, value := range array {
 		if max < value {
 			max = value
 		}
-	}
-	if max == 0 {
-		return 1
 	}
 	return max
 }
