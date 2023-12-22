@@ -30,23 +30,23 @@ func toWeightValues(nodes []string) ([]float64, []string) {
 	weights := make([]float64, len(nodes))
 	values := make([]string, len(nodes))
 
-	for n, v := range nodes {
+	for i, v := range nodes {
 		if !re.MatchString(v) {
-			weights[n] = 1.0
-			values[n] = v
+			weights[i] = 1.0
+			values[i] = v
 
 			continue
 		}
 
 		p := strings.SplitN(v, ":", 2)
 
-		i, err := strconv.ParseFloat(p[0], 64)
+		n, err := strconv.ParseFloat(p[0], 64)
 		if err != nil {
 			panic(err)
 		}
 
-		weights[n] = i
-		values[n] = p[1]
+		weights[i] = n
+		values[i] = p[1]
 	}
 
 	max := maxWeight(weights)
