@@ -15,7 +15,7 @@ func Sort(key string, nodes []string) []string {
 		return nodes
 	}
 
-	weights, values := toWeightValues(nodes)
+	values, weights := toWeightValues(nodes)
 
 	hrw.SortSliceByWeightValue(
 		values,
@@ -26,27 +26,27 @@ func Sort(key string, nodes []string) []string {
 	return values
 }
 
-func toWeightValues(nodes []string) ([]float64, []string) {
-	weights := make([]float64, len(nodes))
+func toWeightValues(nodes []string) ([]string, []float64) {
 	values := make([]string, len(nodes))
+	weights := make([]float64, len(nodes))
 
 	for i, v := range nodes {
 		if !re.MatchString(v) {
-			weights[i] = 1.0
 			values[i] = v
+			weights[i] = 1.0
 
 			continue
 		}
 
-		p := strings.SplitN(v, ":", 2)
+		value := strings.SplitN(v, ":", 2)
 
-		n, err := strconv.ParseFloat(p[0], 64)
+		weight, err := strconv.ParseFloat(value[0], 64)
 		if err != nil {
 			panic(err)
 		}
 
-		weights[i] = n
-		values[i] = p[1]
+		weights[i] = weight
+		values[i] = value[1]
 	}
 
 	max := maxWeight(weights)
@@ -54,7 +54,7 @@ func toWeightValues(nodes []string) ([]float64, []string) {
 		weights[i] = w / max
 	}
 
-	return weights, values
+	return values, weights
 }
 
 func maxWeight(array []float64) float64 {
