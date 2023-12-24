@@ -30,6 +30,8 @@ func toWeightValues(nodes []string) ([]string, []float64) {
 	values := make([]string, len(nodes))
 	weights := make([]float64, len(nodes))
 
+	max := 1.0
+
 	for i, v := range nodes {
 		if !re.MatchString(v) {
 			values[i] = v
@@ -47,22 +49,17 @@ func toWeightValues(nodes []string) ([]string, []float64) {
 
 		weights[i] = weight
 		values[i] = value[1]
+
+		if weight > max {
+			max = weight
+		}
 	}
 
-	max := maxWeight(weights)
-	for i, w := range weights {
-		weights[i] = w / max
+	if max > 1.0 {
+		for i, w := range weights {
+			weights[i] = w / max
+		}
 	}
 
 	return values, weights
-}
-
-func maxWeight(array []float64) float64 {
-	max := 1.0
-	for _, value := range array {
-		if max < value {
-			max = value
-		}
-	}
-	return max
 }
