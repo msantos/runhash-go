@@ -56,6 +56,30 @@ var argv = map[string]result{
 			Args:    []string{"echo", "ok"},
 		},
 	},
+	"notfound": {
+		exitCode: 127,
+		output:   "",
+		Config: &config.Config{
+			N:       2,
+			Key:     "key1",
+			Node:    "foo",
+			Nodes:   []string{"abc", "foo", "bar"},
+			Command: "exec",
+			Args:    []string{"abcdef123xx", "ok"},
+		},
+	},
+	"notfoundandnotselected": {
+		exitCode: 0,
+		output:   "",
+		Config: &config.Config{
+			N:       1,
+			Key:     "key1",
+			Node:    "foo",
+			Nodes:   []string{"abc", "foo", "bar"},
+			Command: "exec",
+			Args:    []string{"abcdef123xx", "ok"},
+		},
+	},
 }
 
 var (
@@ -111,9 +135,18 @@ func TestRun_selected(t *testing.T) {
 	testrun(t, "selected")
 }
 
+func TestRun_notfound(t *testing.T) {
+	testrun(t, "notfound")
+}
+
+func TestRun_notfoundandnotselected(t *testing.T) {
+	testrun(t, "notfoundandnotselected")
+}
+
 func testrun(t *testing.T, name string) {
 	if os.Getenv("TESTING_RUNHASH_EXEC_TESTRUN_"+strings.ToUpper(name)) == "1" {
 		rexec.Run(argv[name].Config)
+		return
 	}
 
 	cmd := exec.Command(os.Args[0], "-test.run=TestRun_"+name)
