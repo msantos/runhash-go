@@ -33,11 +33,14 @@ var argv = map[string]result{
 			Command: "xargs",
 			Args:    []string{"echo", "{}"},
 			Replace: "{}",
+			OKExit:  true,
 		},
 	},
 	"exitcode": {
 		exitCode: 111,
-		output:   "10.0.0.1",
+		output: `10.0.0.1
+127.0.0.1
+192.168.1.1`,
 		Config: &config.Config{
 			Key: "key2",
 			Nodes: []string{
@@ -48,6 +51,7 @@ var argv = map[string]result{
 			Command: "xargs",
 			Args:    []string{"/bin/sh", "-c", "echo '#@#'; exit 111"},
 			Replace: "#@#",
+			OKExit:  true,
 		},
 	},
 }
@@ -82,7 +86,7 @@ func run(cmd *exec.Cmd, r result) error {
 	}
 
 	output := strings.TrimSpace(buf.String())
-	if !strings.HasPrefix(output, r.output) {
+	if output != r.output {
 		return fmt.Errorf("Expected: %s\nOutput: %s\nError: %w",
 			r.output,
 			output,
