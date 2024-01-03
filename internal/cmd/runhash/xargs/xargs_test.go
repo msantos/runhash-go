@@ -20,7 +20,7 @@ type result struct {
 }
 
 var argv = map[string]result{
-	"ok": {
+	"okexit": {
 		exitCode: 0,
 		output:   "192.168.1.1",
 		Config: &config.Config{
@@ -52,6 +52,24 @@ var argv = map[string]result{
 			Args:    []string{"/bin/sh", "-c", "echo '#@#'; exit 111"},
 			Replace: "#@#",
 			OKExit:  true,
+		},
+	},
+	"all": {
+		exitCode: 0,
+		output: `+10.0.0.1+
++127.0.0.1+
++192.168.1.1+`,
+		Config: &config.Config{
+			Key: "key2",
+			Nodes: []string{
+				"192.168.1.1",
+				"10.0.0.1",
+				"127.0.0.1",
+			},
+			Command: "xargs",
+			Args:    []string{"echo", "+{}+"},
+			Replace: "{}",
+			OKExit:  false,
 		},
 	},
 }
@@ -97,12 +115,16 @@ func run(cmd *exec.Cmd, r result) error {
 	return nil
 }
 
-func TestRun_ok(t *testing.T) {
-	testrun(t, "ok")
+func TestRun_okexit(t *testing.T) {
+	testrun(t, "okexit")
 }
 
 func TestRun_exitcode(t *testing.T) {
 	testrun(t, "exitcode")
+}
+
+func TestRun_all(t *testing.T) {
+	testrun(t, "all")
 }
 
 func testrun(t *testing.T, name string) {
