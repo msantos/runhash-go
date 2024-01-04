@@ -1,6 +1,6 @@
 .PHONY: all fmt format lint
 
-VERSION := 0.10.1
+VERSION := 0.10.2
 
 all:
 	cd cmd/runhash && \
