@@ -7,9 +7,9 @@ import (
 	"path"
 	"strings"
 
-	"codeberg.org/msantos/runhash-go/internal/cmd/runhash/exec"
-	"codeberg.org/msantos/runhash-go/internal/cmd/runhash/sort"
-	"codeberg.org/msantos/runhash-go/internal/cmd/runhash/xargs"
+	"codeberg.org/msantos/runhash-go/cmd/runhash/internal/exec"
+	"codeberg.org/msantos/runhash-go/cmd/runhash/internal/sort"
+	"codeberg.org/msantos/runhash-go/cmd/runhash/internal/xargs"
 	"codeberg.org/msantos/runhash-go/internal/config"
 )
 
