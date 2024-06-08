@@ -19,7 +19,7 @@ type Config struct {
 	Help    string
 }
 
-var Version = "0.0.0"
+var Version = "0.10.3"
 
 func getenv(k, def string) string {
 	if v, ok := os.LookupEnv(k); ok {
