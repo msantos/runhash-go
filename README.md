@@ -82,10 +82,10 @@ RUNHASH_NODES="127.0.0.1 127.1.1.1" runhash xargs mykey \
 go install codeberg.org/msantos/runhash-go/cmd/runhash@latest
 ```
 
-* build from git repository
+To build a reproducible executable from the git repository:
 
 ```
-CGO_ENABLED=0 go build -C cmd/runhash -trimpath -ldflags "-w"
+CGO_ENABLED=0 go build -trimpath -ldflags "-w" ./cmd/runhash
 
 # to include the version number
 make
