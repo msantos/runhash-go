@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	rxargs "codeberg.org/msantos/runhash-go/internal/cmd/runhash/xargs"
+	rxargs "codeberg.org/msantos/runhash-go/cmd/runhash/internal/xargs"
 	"codeberg.org/msantos/runhash-go/internal/config"
 )
 

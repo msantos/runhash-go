@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	rsort "codeberg.org/msantos/runhash-go/internal/cmd/runhash/sort"
+	rsort "codeberg.org/msantos/runhash-go/cmd/runhash/internal/sort"
 	"codeberg.org/msantos/runhash-go/internal/config"
 )
 

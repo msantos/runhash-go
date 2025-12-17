@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	rexec "codeberg.org/msantos/runhash-go/internal/cmd/runhash/exec"
+	rexec "codeberg.org/msantos/runhash-go/cmd/runhash/internal/exec"
 	"codeberg.org/msantos/runhash-go/internal/config"
 )
 
