@@ -1,4 +1,4 @@
-module codeberg.org/msantos/runhash-go
+module go.iscode.ca/runhash
 
 go 1.16
 

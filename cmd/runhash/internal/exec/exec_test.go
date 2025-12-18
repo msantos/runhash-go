@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	rexec "codeberg.org/msantos/runhash-go/cmd/runhash/internal/exec"
-	"codeberg.org/msantos/runhash-go/internal/config"
+	rexec "go.iscode.ca/runhash/cmd/runhash/internal/exec"
+	"go.iscode.ca/runhash/internal/config"
 )
 
 type result struct {

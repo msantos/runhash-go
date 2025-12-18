@@ -7,10 +7,10 @@ import (
 	"path"
 	"strings"
 
-	"codeberg.org/msantos/runhash-go/cmd/runhash/internal/exec"
-	"codeberg.org/msantos/runhash-go/cmd/runhash/internal/sort"
-	"codeberg.org/msantos/runhash-go/cmd/runhash/internal/xargs"
-	"codeberg.org/msantos/runhash-go/internal/config"
+	"go.iscode.ca/runhash/cmd/runhash/internal/exec"
+	"go.iscode.ca/runhash/cmd/runhash/internal/sort"
+	"go.iscode.ca/runhash/cmd/runhash/internal/xargs"
+	"go.iscode.ca/runhash/internal/config"
 )
 
 func usage() {

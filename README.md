@@ -79,7 +79,7 @@ RUNHASH_NODES="127.0.0.1 127.1.1.1" runhash xargs mykey \
 # Build
 
 ```
-go install codeberg.org/msantos/runhash-go/cmd/runhash@latest
+go install go.iscode.ca/runhash/cmd/runhash@latest
 ```
 
 To build a reproducible executable from the git repository:

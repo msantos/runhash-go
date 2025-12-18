@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	rxargs "codeberg.org/msantos/runhash-go/cmd/runhash/internal/xargs"
-	"codeberg.org/msantos/runhash-go/internal/config"
+	rxargs "go.iscode.ca/runhash/cmd/runhash/internal/xargs"
+	"go.iscode.ca/runhash/internal/config"
 )
 
 type result struct {

@@ -6,8 +6,8 @@ import (
 	"os/exec"
 	"syscall"
 
-	"codeberg.org/msantos/runhash-go/internal/config"
-	"codeberg.org/msantos/runhash-go/internal/hash"
+	"go.iscode.ca/runhash/internal/config"
+	"go.iscode.ca/runhash/internal/hash"
 )
 
 const (

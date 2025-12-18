@@ -10,8 +10,8 @@ import (
 	"strings"
 	"testing"
 
-	rsort "codeberg.org/msantos/runhash-go/cmd/runhash/internal/sort"
-	"codeberg.org/msantos/runhash-go/internal/config"
+	rsort "go.iscode.ca/runhash/cmd/runhash/internal/sort"
+	"go.iscode.ca/runhash/internal/config"
 )
 
 type result struct {
