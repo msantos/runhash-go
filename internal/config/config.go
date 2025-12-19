@@ -49,7 +49,8 @@ func (cfg *Config) Usage() {
 
 func (cfg *Config) String() string {
 	return fmt.Sprintf(
-		"RUNHASH_NODE=\"%s\"\nRUNHASH_NODES=\"%s\"",
+		`RUNHASH_NODE="%s"
+RUNHASH_NODES="%s"`,
 		cfg.Node,
 		strings.Join(cfg.Nodes, " "),
 	)
@@ -58,7 +59,14 @@ func (cfg *Config) String() string {
 func PrintDefaults() {
 	fmt.Fprintf(
 		os.Stderr,
-		"  RUNHASH_NODE=\"%s\"\n    Node identifier\n\n  RUNHASH_NODES=\"%s\"\n    Space separated list of nodes\n\n",
+		`
+  RUNHASH_NODE="%s"
+    Node identifier
+
+  RUNHASH_NODES="%s"
+    Space separated list of nodes
+
+`,
 		Nodename(), Nodes(),
 	)
 }

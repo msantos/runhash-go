@@ -25,7 +25,6 @@ Commands:
   version - display version
 
 Environment Variables:
-
 `, path.Base(os.Args[0]), config.Version, os.Args[0])
 
 	config.PrintDefaults()
