@@ -33,7 +33,7 @@ Select one or more nodes from a list of nodes. Nodes are read:
 
 #### Example
 
-```sh
+```bash
 runhash sort mykey 127.0.0.1 192.168.1.1 10.0.0.1
 
 RUNHASH_NODES="127.0.0.1 192.168.1.1 10.0.0.1" runhash sort mykey
@@ -52,7 +52,7 @@ The command will always run on this node if either:
 
 #### Example
 
-```sh
+```bash
 RUNHASH_NODES="$(uname -n) foo bar" runhash -n 1 exec mykey ls -al
 ```
 
@@ -66,7 +66,7 @@ the command is run again with the next node in the list.
 
 #### Example
 
-```sh
+```bash
 RUNHASH_NODES="127.0.0.1 127.1.1.1" runhash xargs mykey nc "{}" 443
 
 # set an environment variable for a command
@@ -76,13 +76,13 @@ RUNHASH_NODES="127.0.0.1 127.1.1.1" runhash xargs mykey \
 
 # Build
 
-```
+```bash
 go install go.iscode.ca/runhash/cmd/runhash@latest
 ```
 
 To build a reproducible executable from the git repository:
 
-```
+```bash
 CGO_ENABLED=0 go build -trimpath -ldflags "-w" ./cmd/runhash
 
 # to include the version number
