@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"slices"
 	"syscall"
 
 	"go.iscode.ca/runhash/internal/config"
@@ -68,10 +69,5 @@ func selectedNode(cfg *config.Config) bool {
 	if !cfg.Sorted {
 		values = hash.Sort(cfg.Key, cfg.Nodes)
 	}
-	for _, v := range cfg.Subset(values) {
-		if v == cfg.Node {
-			return true
-		}
-	}
-	return false
+	return slices.Contains(cfg.Subset(values), cfg.Node)
 }

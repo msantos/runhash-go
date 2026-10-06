@@ -77,10 +77,3 @@ func (cfg *Config) Subset(nodes []string) []string {
 	}
 	return nodes[:min(len(nodes), cfg.N)]
 }
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}

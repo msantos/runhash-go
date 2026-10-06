@@ -92,11 +92,9 @@ func run(cmd *exec.Cmd, r result) error {
 
 	cmd.Stdin = stdin
 
-	var ee *exec.ExitError
-
 	err := cmd.Run()
 	if err != nil {
-		if !errors.As(err, &ee) {
+		if _, ok := errors.AsType[*exec.ExitError](err); !ok {
 			return err
 		}
 	}
